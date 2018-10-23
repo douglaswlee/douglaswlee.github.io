@@ -14,7 +14,7 @@ Basically, one could say the Cavaliers were overperforming their statistics (in 
 But what exactly does it mean to "overperform" or "underperform" and what are these "statistics"? Let's first talk a little about [Pythagorean Expectation](https://en.wikipedia.org/wiki/Pythagorean_expectation) in sports.
 
 ## What exactly does Pythagoras have to do with basketball?
-The idea was conceived of by [Bill James](https://en.wikipedia.org/wiki/Bill_James) (who you might know about if you *read* [Moneyball](https://en.wikipedia.org/wiki/Moneyball)), who posited that a baseball team's winning percentage *should* be the following function of its runs scored and runs allowed:
+The idea was conceived of by [Bill James](https://en.wikipedia.org/wiki/Bill_James) (who you might know from [Moneyball](https://en.wikipedia.org/wiki/Moneyball)), who posited that a baseball team's winning percentage *should* be the following function of its runs scored and runs allowed:
 
 ![alt text](../assets/img/baseball_pythag.svg)
 
