@@ -94,7 +94,7 @@ None of these features appear to have much of a linear relationship with *diffWP
 
 My initial "baseline" model (including all features) resulted in a training R<sup>2</sup> of 0.109 and a holdout R<sup>2</sup> of 0.138, which might indicate some amount of underfitting. I still went ahead and tried out SelectKBest and Ridge Regression, and the results were as expected (example learning curve of Ridge Regression below):
 
-![alt text](../assets/img/RidgeLearnEx2.png)
+![alt text](../assets/img/ridge_example.png)
 
 Hoping to improve model performance, I moved on to the clutch performance features scraped for each team season from NBA.com, adding them to the set of features.
 
