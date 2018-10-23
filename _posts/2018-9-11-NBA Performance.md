@@ -64,7 +64,7 @@ There were initially 507 team seasons in the collected data, which was reduced t
 * Not terribly relevant to the response variable, or
 * Better captured by another metric (Clutch Games Played vs Clutch Minutes Played)
 
-After these operations, there were 391 team seasons with 14 all game situation features and 9 clutch situation features.
+There were 391 team seasons with 14 all game situation features and 9 clutch situation features.
 
 ## Model 1: All Game Situation Features Only
 
