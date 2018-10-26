@@ -18,4 +18,4 @@ Here, "useful feedback" can be any collection of responses to a submitted questi
 
 Let's take a look at an example r/gradadmissions user-submitted question and its associated responses.
 
-![alt text](../assets/img/example_doc.png)
+![alt text](../assets/img/document_example.png)
