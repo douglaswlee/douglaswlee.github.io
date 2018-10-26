@@ -28,3 +28,13 @@ Before performing any analysis, it should be noted that not every collected docu
 
 ## What are you all even asking?
 
+With my complete corpus now set, I first need to transform the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, we map each document to all words in the corpus according to some metric capturing the frequency for each given word in the document. The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which ultimately measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document, and is suited for analyzing documents covering related subject matter.
+
+Using scikit-learn's `TfidfVectorizer`, one can perform the operation of transforming a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned for a specific kind of document-term matrix, according to the following parameters:
+
+* `token_pattern`
+* `stop_words`
+* `ngram_range`
+* `min_df`
+* `max_df`
+
