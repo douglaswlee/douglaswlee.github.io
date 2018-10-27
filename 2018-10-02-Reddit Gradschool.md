@@ -28,7 +28,7 @@ Before performing any analysis, it should be noted that not every collected docu
 
 ## Topic modeling: What are grad school candidates even asking?
 
-With my complete corpus now set, I first need to transform the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, we map each document to all words in the corpus according to some metric capturing the frequency for each given word in the document. The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which ultimately measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document, and is suited for analyzing documents covering related subject matter.
+With my complete corpus now set, I first need to transform the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, we map each document to all words in the corpus according to some metric capturing the frequency for each given word in the document -- what's referred to as a [Bag-of-Words model](https://en.wikipedia.org/wiki/Bag-of-words_model). The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which ultimately measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document.
 
 Using scikit-learn's `TfidfVectorizer`, one can transform a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned according to the following parameters to modify the document-term matrix output:
 
@@ -36,6 +36,3 @@ Using scikit-learn's `TfidfVectorizer`, one can transform a set of text document
 * `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns) 
 * `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
 * `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
-
-
-
