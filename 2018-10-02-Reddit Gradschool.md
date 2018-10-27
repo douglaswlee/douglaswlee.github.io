@@ -26,15 +26,16 @@ I collected ~1000 documents like the above using [PRAW](https://praw.readthedocs
 
 Before performing any analysis, it should be noted that not every collected document is actually a question. Taking the path of least resistance, I filtered out submissions that were not explicitly questions using punctuation -- essentially looking for the presence of question marks in each document text. I also removed questions which had only been posted within 24 hours of collection, eventually leaving me with 829 documents (and their ~6000 associated comments) to analyze.
 
-## What are you all even asking?
+## Topic modeling: What are grad school candidates even asking?
 
 With my complete corpus now set, I first need to transform the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, we map each document to all words in the corpus according to some metric capturing the frequency for each given word in the document. The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which ultimately measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document, and is suited for analyzing documents covering related subject matter.
 
-Using scikit-learn's `TfidfVectorizer`, one can perform the operation of transforming a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned for a specific kind of document-term matrix, according to the following parameters:
+Using scikit-learn's `TfidfVectorizer`, one can transform a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned according to the following parameters to modify the document-term matrix output:
 
-* `token_pattern`
-* `stop_words`
-* `ngram_range`
-* `min_df`
-* `max_df`
+* `token_pattern`: denoting what text constitues a word (a string of at least two consecutive alphanumeric characters)
+* `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns) 
+* `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
+* `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
+
+
 
