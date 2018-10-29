@@ -28,7 +28,7 @@ Before performing any analysis, it should be noted that not every collected docu
 
 ## Topic modeling: What are grad school candidates even asking?
 
-With my complete corpus now set, I first need to transform the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, we map each document to all words in the corpus according to some metric capturing the frequency for each given word in the document -- what's referred to as a [Bag-of-Words model](https://en.wikipedia.org/wiki/Bag-of-words_model). The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which ultimately measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document.
+With my complete corpus now set, I first transformed the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, I mapped each document to all words in the corpus according to some metric capturing the frequency for each given word in the document -- what's referred to as a [Bag-of-Words model](https://en.wikipedia.org/wiki/Bag-of-words_model). The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document.
 
 Using scikit-learn's `TfidfVectorizer`, one can transform a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned according to the following parameters to modify the document-term matrix output:
 
@@ -36,3 +36,28 @@ Using scikit-learn's `TfidfVectorizer`, one can transform a set of text document
 * `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns) 
 * `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
 * `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
+
+I tuned the last three sets of the above parameters in tandem with using Non-negative Matrix Factorization (NMF) to extract a specified number of topics from the documents. NMF allows us to derive these topics from the document-term matrix, decomposing it into a pair of non-negative matrices, the document-topic and topic-term matrix. The former of these assigns a vector of weights to each document basically reflecting the intensity of the topic in the document, while the latter assigns a vector of weights to each topic basically reflecting the intensity of the association of a given word to the topic. Consequently, for some chosen number of topics, one may obtain the top words for each topic -- for example:
+
+```
+Topic #0: gpa, major, semester, ve, grades, years, classes, overall, undergrad, low
+Topic #1: school, accepted, hear, applied, faculty, worth, schools, haven, little, state
+Topic #2: program, master, field, phd program, psychology, email, applied, post, accepted, research
+Topic #3: research, experience, lab, research experience, good, really, summer, doing, project, related
+Topic #4: just, really, want, like, feel, don, ve, lot, good, people
+Topic #5: phd, ms, thesis, phd program, phd programs, experience, want, ve, apply, undergrad
+Topic #6: university, state, list, universities, applying, programs, ms, strong, currently, different
+Topic #7: cs, math, classes, major, courses, semester, ms, degree, level, really
+Topic #8: year, semester, time, summer, got, applying, grades, applications, did, apply
+Topic #9: grad, grad school, undergrad, want, getting, don, school, advice, think, ll
+Topic #10: programs, applying, ve, getting, phd programs, looking, interested, sure, apply, fall
+Topic #11: time, job, work, need, field, going, doing, ve, working, does
+Topic #12: work, years, like, know, college, working, great, students, help, good
+Topic #13: think, professor, don, got, did, letter, know, good, recommendation, professors
+Topic #14: schools, gre, good, apply, scores, know, field, looking, student, experience
+Topic #15: offer, interview, accepted, decision, funding, email, received, tuition, choice, got
+Topic #16: graduate, graduate school, undergrad, admissions, undergraduate, classes, department, background, student, degree
+Topic #17: application, college, admissions, background, undergraduate, just, applied, letters, ask, process
+Topic #18: masters, degree, years, applied, looking, experience, applying, accepted, help, working
+Topic #19: science, courses, engineering, course, computer, computer science, want, fall, master, summer
+```
