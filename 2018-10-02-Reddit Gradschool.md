@@ -26,7 +26,7 @@ I collected ~1000 documents like the above using [PRAW](https://praw.readthedocs
 
 Before performing any analysis, it should be noted that not every collected document is actually a question. Taking the path of least resistance, I filtered out submissions that were not explicitly questions using punctuation -- essentially looking for the presence of question marks in each document text. I also removed questions which had only been posted within 24 hours of collection, eventually leaving me with 829 documents (and their ~6000 associated comments) to analyze.
 
-## Topic modeling: What are grad school candidates even asking?
+## Topic Modeling: What are grad school candidates even asking?
 
 With my complete corpus now set, I first transformed the collected documents (the user-submitted questions to r/gradadmissions) into vectors of weighted tokens (in this case word tokens) -- that is, I mapped each document to all words in the corpus according to some metric capturing the frequency for each given word in the document -- what's referred to as a [Bag-of-Words model](https://en.wikipedia.org/wiki/Bag-of-words_model). The metric used here is *term frequency-inverse document frequency*, or *tf-idf*, which measures the tradeoff between the frequency of occurrence of a given word in a document against its frequency of occurrence across the entire corpus. From this construction, tf-idf measures the [importance](https://www.kdnuggets.com/2018/08/wtf-tf-idf.html) of a given word to a particular document.
 
@@ -37,7 +37,7 @@ Using scikit-learn's `TfidfVectorizer`, one can transform a set of text document
 * `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
 * `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
 
-I tuned the last three sets of the above parameters in tandem with using Non-negative Matrix Factorization (NMF) to extract a specified number of topics from the documents. NMF allows us to derive these topics from the document-term matrix, decomposing it into a pair of non-negative matrices, the document-topic and topic-term matrix. The former of these assigns a vector of weights to each document basically reflecting the intensity of the topic in the document, while the latter assigns a vector of weights to each topic basically reflecting the intensity of the association of a given word to the topic. Consequently, for some chosen number of topics, one may obtain the top words for each topic -- for example:
+I tuned the last three sets of the above parameters in tandem with using [Non-Negative Matrix Factorization](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html) (NMF) to extract a specified number of topics from the documents. NMF allows us to derive these topics from the document-term matrix, decomposing it into a pair of non-negative matrices, the document-topic and topic-term matrix. The former of these assigns a vector of weights to each document basically reflecting the intensity of the topic in the document, while the latter assigns a vector of weights to each topic basically reflecting the intensity of the association of a given word to the topic. Consequently, for some chosen number of topics, one may obtain the top words for each topic -- for example:
 
 ```
 Topic #0: gpa, major, semester, ve, grades, years, classes, overall, undergrad, low
@@ -67,3 +67,7 @@ From above there is at least one topic (Topic #4) with a whole lot of nothing an
 Ultimately, I was able to obtain a relatively resolved set of topics by considering only unigrams (single words) and without having to aggressively tune `stop_words` and `min_df` and `max_df` too much. Below are the 15 topics I ultimately settled upon, along with the top words associated with each topic which helped with naming each topic:
 
 ![alt text](../assets/img/Topics.png)
+
+You can observe that there are some redundant topics -- attempts to reduce the number of topics (to say, 10-12 topics) tended to result in these same redundancies appearing while losing other topics entirely. For the most part, nothing particularly distinguished these cases from each other, except for the two Admissions topics. The topic "Admissions1" might emphasize pending admissions decisions more, while "Admissions2" seemed to focus more on decisions already processed.
+
+## Visualizing the Topics
