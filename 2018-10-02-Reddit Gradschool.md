@@ -61,3 +61,9 @@ Topic #17: application, college, admissions, background, undergraduate, just, ap
 Topic #18: masters, degree, years, applied, looking, experience, applying, accepted, help, working
 Topic #19: science, courses, engineering, course, computer, computer science, want, fall, master, summer
 ```
+
+From above there is at least one topic (Topic #4) with a whole lot of nothing and at least two other topics (Topics #2 and #5, for instance) that seem redundant -- which might lead one to continue playing around with different lists of `stop_words`, values for `min_df` and `max_df`, different ranges for `ngram_range`, and of course, different numbers of topics in an effort to get topics which are clearer and more specific. (Note: This process can be extremely time and sanity-consuming, and worst of all, a little bit too manual.)
+
+Ultimately, I was able to obtain a relatively resolved set of topics by considering only unigrams (single words) and without having to aggressively tune `stop_words` and `min_df` and `max_df` too much. Below are the 15 topics I ultimately settled upon, along with the top words associated with each topic which helped with naming each topic:
+
+![alt text](../assets/img/Topics.png)
