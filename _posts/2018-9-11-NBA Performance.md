@@ -120,7 +120,7 @@ From the above, I chose the model returned from Ridge Regression, even though I'
 
 ## Interpreting the "Final" Model: The Clutch Gene?
 
-The chosen model has the following seven features with corresponding coefficient values as displayed below: 
+The chosen model has the following ten most imporant features (by absolute coefficient value) as displayed below: 
 
 ![alt text](../assets/img/RidgeBest10.png)
 
