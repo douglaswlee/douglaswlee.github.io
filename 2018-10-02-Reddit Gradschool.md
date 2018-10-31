@@ -82,6 +82,14 @@ I adapted some code from a [tutorial](https://shuaiw.github.io/2016/12/22/topic-
 
 We can see that documents with similar maximally-weighted topic matter tend to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) seem to cluster together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I don't quite know what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
 
-## OK, but what about "Useful Feedback"
+## OK, but what about "Useful Feedback": From Unsupervised Learning to a Logistic Regression model
 
+Now, recall that one of the objectives here was to see if the topic matter of submitted questions to r/gradadmissons impacted the incidence of "useful feedback" from the subreddit's users. I intended to use a Logistic Regression model because this problem has a binary target and I was interested in interpretability (what topics and other document characteristics are predictive of "useful feedback") as much as I was in predicting specific types of feedback. 
 
+For each document (a submitted question), I checked to see if the OP had first contributed to the comments, and then had made some expression of gratitude -- what amounts to the somewhat naive search for the word "thanks" (or some of its variations: e.g., "thank you", "tysm", etc.) in the OP's follow-up comments. If both of these conditions were satisfied, then the question had elicited "useful feedback" (positive class), otherwise the question did not (negative class). Defining the classes as such resulted in ~35% of documents labeled as eliciting "useful feedback" so I made sure to set the parameter `class_weight = balanced` for all models. 
+
+Having thus defined the target of the Logistic Regression models, I then specified the following features:
+
+* Topic features, from the document-topic matrix
+* Document features, characteristics of the submitted questions themselves
+-
