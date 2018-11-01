@@ -125,4 +125,4 @@ Taking a look at the coefficient values of all features revealed some insight in
 * Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and 
 * As for presentation of question, longer and more detailed appears to be better, as does posting before the April 15th deadline.
 
-![alt text](../assets/img/LRCoefs.png)
+![alt text](../assets/img/LRCoef.png)
