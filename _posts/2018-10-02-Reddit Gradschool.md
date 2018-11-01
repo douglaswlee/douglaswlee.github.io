@@ -101,7 +101,7 @@ I evaluated four candidate Logistic Regression models, using all scikit-learn de
 * **TopOP**, using Topic and OP features, and
 * **All**, using all features.
 
-After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback -- and the two, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm) as well -- in order to provide a more complete picture of the potential feedback a prospective r/gradamissions user might encounter.
+After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback in order to provide a more complete picture of the potential feedback a prospective r/gradamissions user might encounter. Also, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), the metrics Recall and Specificity have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm).
 
 ![alt text](../assets/img/LRComp.png)
 
@@ -126,3 +126,6 @@ Taking a look below at the coefficient values of all features revealed some insi
 * As for presentation of question, longer and more detailed appears to be better, as does posting before the April 15th deadline.
 
 ![alt text](../assets/img/LRCoef.png)
+
+## Takeaways?
+
