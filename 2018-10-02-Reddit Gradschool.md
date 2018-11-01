@@ -101,5 +101,28 @@ I evaluated four candidate Logistic Regression models, using all scikit-learn de
 * **TopOP**, using Topic and OP features, and
 * **All**, using all features.
 
-After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback -- and the two, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm) as well.
+After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback -- and the two, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm) as well -- in order to provide a more complete picture of the potential feedback a prospective r/gradamissions user might encounter.
 
+![alt text](../assets/img/LRComp.png)
+
+From the above, I chose the all features Logistic Regression model **All**, as it resulted the highest average value for my modification of the F1 score. Certainly the variance of this model's performance across all validation sets is larger than would be preferred, but lower variance models (the topics-only model **Top** and the topics and OP model **TopOP** are not as good on average, and **All** outperforms both across the majority of validation sets).
+
+I attempted to improve the performance of the **All** model by tuning the decision threshold for classifying observations into the positive class on the full training set. Changing the threshold from the default (probability of being in the positive class) of 0.5 doesn't turn out to improve performance much:
+
+![alt text](../assets/img/ModF1.png)
+
+An increase of this threshold to 0.51 slightly improved model performance, ultimately prioritizing the correct identification of questions not eliciting "useful feedback" (Specificity) just a bit over doing the same for questions eliciting "useful feedback" (Recall):
+
+![alt text](../assets/img/RecSpec.png)
+
+Evaluating the final version of this model on the holdout set showed the same tradeoff, with better performance in correctly classifying questions that did not elicit "useful feedback" (true negatives):
+
+![alt text](../assets/img/ConfusionFletcher.png)
+
+Taking a look at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
+
+* Focused questions about topics such as the GRE or Interview will increase the (log) odds of receiving the right type of feedback, but more general questions about the types of Programs or Schools to apply also work,
+* Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and 
+* As for presentation of question, longer and more detailed appears to be better, as does posting before the April 15th deadline.
+
+![alt text](../assets/img/LRCoefs.png)
