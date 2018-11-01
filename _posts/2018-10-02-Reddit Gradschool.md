@@ -119,7 +119,7 @@ Evaluating the final version of this model on the holdout set showed the same tr
 
 ![alt text](../assets/img/ConfusionFletcher.png)
 
-Taking a look at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
+Taking a look below at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
 
 * Focused questions about topics such as the GRE or Interview will increase the (log) odds of receiving the right type of feedback, but more general questions about the types of Programs or Schools to apply also work,
 * Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and 
