@@ -86,10 +86,13 @@ We can see that documents with similar maximally-weighted topic matter tend to b
 
 Now, recall that one of the objectives here was to see if the topic matter of submitted questions to r/gradadmissons impacted the incidence of "useful feedback" from the subreddit's users. I intended to use a Logistic Regression model because this problem has a binary target and I was interested in interpretability (what topics and other document characteristics are predictive of "useful feedback") as much as I was in predicting specific types of feedback. 
 
-For each document (a submitted question), I checked to see if the OP had first contributed to the comments, and then had made some expression of gratitude -- what amounts to the somewhat naive search for the word "thanks" (or some of its variations: e.g., "thank you", "tysm", etc.) in the OP's follow-up comments. If both of these conditions were satisfied, then the question had elicited "useful feedback" (positive class), otherwise the question did not (negative class). Defining the classes as such resulted in ~35% of documents labeled as eliciting "useful feedback" so I made sure to set the parameter `class_weight = balanced` for all models. 
+For each document (a submitted question), I checked to see if the OP had first contributed to the comments, and then had made some expression of gratitude -- what amounts to the somewhat naive search for the word "thanks" (or some of its variations: e.g., "thank you", "tysm", etc.) in the OP's follow-up comments. If both of these conditions were satisfied, then the question had elicited "useful feedback" (positive class), otherwise the question did not (negative class). Defining the classes as such resulted in ~35% of documents labeled as eliciting "useful feedback" so I needed to set the parameter `class_weight = balanced` to address class imbalance for all models. 
 
 Having thus defined the target of the Logistic Regression models, I then specified the following features:
 
-* Topic features, from the document-topic matrix
-* Document features, characteristics of the submitted questions themselves
--
+* Topic features, from the document-topic matrix,
+* Document features, characteristics of the submitted questions themselves: the length of the question, the time the question was posted relative to the [April 15th deadline](https://cgsnet.org/april-15-resolution) for admissions decisions, and the sentiment associated with the question using the [compound score](https://stackoverflow.com/questions/40325980/how-is-the-vader-compound-polarity-score-calculated-in-python-nltk) from [VADER](https://github.com/cjhutto/vaderSentiment), and
+* OP features, characteristics of the submitting user him/herself: "age" (how long the user has been on Reddit), [karma score](https://www.reddit.com/r/firstdayontheinternet/comments/30b44n/could_someone_explain_how_the_reddit_karma_system/).
+
+
+
