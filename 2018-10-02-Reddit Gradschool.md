@@ -92,7 +92,14 @@ Having thus defined the target of the Logistic Regression models, I then specifi
 
 * Topic features, from the document-topic matrix,
 * Document features, characteristics of the submitted questions themselves: the length of the question, the time the question was posted relative to the [April 15th deadline](https://cgsnet.org/april-15-resolution) for admissions decisions, and the sentiment associated with the question using the [compound score](https://stackoverflow.com/questions/40325980/how-is-the-vader-compound-polarity-score-calculated-in-python-nltk) from [VADER](https://github.com/cjhutto/vaderSentiment), and
-* OP features, characteristics of the submitting user him/herself: "age" (how long the user has been on Reddit), [karma score](https://www.reddit.com/r/firstdayontheinternet/comments/30b44n/could_someone_explain_how_the_reddit_karma_system/).
+* OP features, characteristics of the submitting user him/herself: "age" (how long the user has been on Reddit) and [karma score](https://www.reddit.com/r/firstdayontheinternet/comments/30b44n/could_someone_explain_how_the_reddit_karma_system/).
 
+I evaluated four candidate Logistic Regression models, using all scikit-learn default parameters except for `class_weight`:
 
+* **Top**, using only Topic features,
+* **TopDoc**, using Topic and Document features,
+* **TopOP**, using Topic and OP features, and
+* **All**, using all features.
+
+After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback -- and the two, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm) as well.
 
