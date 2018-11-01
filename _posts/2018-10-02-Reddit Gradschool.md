@@ -80,7 +80,7 @@ I adapted some code from a [tutorial](https://shuaiw.github.io/2016/12/22/topic-
 
 ![alt text](../assets/img/tSNE_GradSchool.png)
 
-We can see that documents with similar maximally-weighted topic matter tend to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) seem to cluster together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I don't quite know what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
+We can see that documents with similar maximally-weighted topic matter tended to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) clustered together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I wasn't quite sure what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
 
 ## OK, but what about "Useful Feedback": From Unsupervised Learning to a Logistic Regression model
 
@@ -127,5 +127,8 @@ Taking a look below at the coefficient values of all features revealed some insi
 
 ![alt text](../assets/img/LRCoef.png)
 
-## Takeaways?
+## Takeaways and other Navel-Gazing
 
+I was pretty satisfied (as much as that is possible for me) with how this project shaped up, both when I originally presented the results at Metis as well as after I took some additional time post-bootcamp to polish some of the work. Of course, that doesn't mean there aren't a number of things that couldn't vastly improve the work here. There should be a better way to characterize "useful feedback" than simply looking for the word "thanks" or some variation of it, since it's completely possible commenters provided zero help while the OP decided to be polite (for example). The same goes for how I decided [what was and was not a question](https://stackoverflow.com/questions/17879551/nltk-find-if-a-sentence-is-in-a-questioning-form), as a given submission may be inquisitive in nature without even using a question mark, especially in relatively informal online communities. I also could have chosen to evaluate the different candidate models differently and perhaps created a different metric that would prioritize how well the model identified true positives and negatives.
+
+The biggest shortcomings here, however, were how limited the data was (how about a full admissions cycle instead of a roughly 3-month period corresponding to when the bulk of admissions decisions are made) and, in the [lmgtfy](https://lmgtfy.com) world of pariticipating in online communities, not fully considering the temporal nature of these data -- e.g., was this question or something like it posted before? An ongoing (but possibly never to see the light of day) future project for me will be creating something of a web application which will allow a prospective graduate student to input a question and return most similar past submitted questions to r/gradadmissions as well as [other](https://talk.collegeconfidential.com) [similar](https://www.reddit.com/r/GradSchool/) [forums](https://forum.thegradcafe.com) [and](https://www.reddit.com/r/AskAcademia/) [communities](https://www.reddit.com/r/GREhelp/).
