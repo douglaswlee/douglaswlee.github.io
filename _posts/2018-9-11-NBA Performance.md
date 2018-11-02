@@ -1,6 +1,7 @@
 ---
 layout: post
 title: NBA Teams, Pythagoras (sort of), and who overperforms/underperforms
+img: NBA/lebron.jpg
 ---
 
 Before starting at [Metis](https://www.thisismetis.com) this past spring, I spent a fair bit of time following the day-to-day of the latest NBA season (which now, of course, is last season). You might consider this time wasted, but it did provide me the inspiration for my second project at Metis, where we were asked to build a linear regression model to address a problem of our choice. Before discussing the details of this project, let's do some story time.
