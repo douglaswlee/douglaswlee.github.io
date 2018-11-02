@@ -82,7 +82,9 @@ In order to really explore the documents and the topic distribution visually, we
 
 I adapted some code from a [tutorial](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html) for creating a t-SNE visualization of a topic model in [Bokeh](https://bokeh.pydata.org/en/latest/) to create the below visual representation of my documents and topics.
 
-![alt text](../assets/img/tSNE_GradSchool.png)
+<p align="center">
+  <img width="653" height="455" src="../assets/img/tSNE_GradSchool.png">
+</p>
 
 We can see that documents with similar maximally-weighted topic matter tended to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) clustered together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I wasn't quite sure what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
 
@@ -108,22 +110,28 @@ I evaluated four candidate Logistic Regression models, using all scikit-learn de
 After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback in order to provide a more complete picture of the potential feedback a prospective r/gradamissions user might encounter. Also, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), the metrics Recall and Specificity have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm).
 
 <p align="center">
-  <img width="460" height="300" src="../assets/img/LRComp.png">
+  <img src="../assets/img/LRComp.png">
 </p>
 
 From the above, I chose the all features Logistic Regression model **All**, as it resulted the highest average value for my modification of the F1 score. Certainly the variance of this model's performance across all validation sets is larger than would be preferred, but lower variance models (the topics-only model **Top** and the topics and OP model **TopOP** are not as good on average, and **All** outperforms both across the majority of validation sets).
 
 I attempted to improve the performance of the **All** model by tuning the decision threshold for classifying observations into the positive class on the full training set. Changing the threshold from the default (probability of being in the positive class) of 0.5 doesn't turn out to improve performance much:
 
-![alt text](../assets/img/ModF1.png)
+<p align="center">
+  <img src="../assets/img/ModF1.png">
+</p>
 
 An increase of this threshold to 0.51 slightly improved model performance, ultimately prioritizing the correct identification of questions not eliciting "useful feedback" (Specificity) just a bit over doing the same for questions eliciting "useful feedback" (Recall):
 
-![alt text](../assets/img/RecSpec.png)
+<p align="center">
+  <img src="../assets/img/RecSpec.png">
+</p>
 
 Evaluating the final version of this model on the holdout set showed the same tradeoff, with better performance in correctly classifying questions that did not elicit "useful feedback" (true negatives):
 
-![alt text](../assets/img/ConfusionFletcher.png)
+<p align="center">
+  <img src="../assets/img/ConfusionFletcher.png">
+</p>
 
 Taking a look below at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
 
@@ -131,7 +139,9 @@ Taking a look below at the coefficient values of all features revealed some insi
 * Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and 
 * As for presentation of question, longer and more detailed appears to be better, as does posting before the April 15th deadline.
 
-![alt text](../assets/img/LRCoef.png)
+<p align="center">
+  <img src="../assets/img/LRCoef.png">
+</p>
 
 ## Takeaways and other Navel-Gazing
 
@@ -139,7 +149,9 @@ I was pretty satisfied (as much as that is possible for me) with how this projec
 
 One of the bigger shortcomings here, however, was how limited the data was -- how about a full admissions cycle instead of a roughly 3-month period corresponding to when the bulk of admissions decisions are made? Having this kind of data would allow for better interpretation of how questions submitted to r/gradmissions evolved over time. I made a time-lapse version of the earlier t-SNE topic representation below, and, well, I'm not sure I can tell that there is anything interesting in the topics of questions for March through May 2018. I would expect that, over a full admissions cycle, we'd see more questions related to the application process (GRE, Grades) from August up through March of the cycle and then more questions related to admisssions decisions afterwards.
 
+<center>
 <iframe src="https://giphy.com/embed/OkiIeoPoPrSSiI1sXK" width="600" height="470" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/OkiIeoPoPrSSiI1sXK">via GIPHY</a></p>
+</center>
 
 Also, in the [lmgtfy](https://lmgtfy.com) universe of online communities, not fully considering the temporal nature of these data introduces another shortcoming -- was a particular question or something like it posted before? An ongoing (but possibly never to see the light of day) future project for me will be creating something of a web application which will allow a prospective graduate student to input a question and return most similar past submitted questions to r/gradadmissions as well as [similar](https://www.reddit.com/r/GradSchool/) [forums](https://forum.thegradcafe.com) [and](https://www.reddit.com/r/AskAcademia/) [communities](https://www.reddit.com/r/GREhelp/).
 
