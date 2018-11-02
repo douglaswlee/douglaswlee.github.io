@@ -19,7 +19,7 @@ Here, "useful feedback" can be any collection of comments responding to a submit
 A document for my corpus is a given user-submitted question to r/gradadmissions and any supporting text entered by the OP. Let's take a look at an example document below:
 
 <p align="center">
-  <img src="../assets/img/gradadmissions/document_example.png">
+  <img src="../assets/img/gradadmissions/docuemnt_example.png">
 </p>
 
 Here, we have a question from a reddit user named SFSUer (the OP), who is kind of an overachiever and wants to know about receiving funding for a Master's degree in Engineering. From the above, you can see that I'm treating as a document the combination of the question in the title of the submission and the body of text in the box below. In the comments in response to this question, our OP has returned to follow up but hasn't exactly thanked any other commenter at this point, so I would label this document as one where "useful feedback" has not been received.
