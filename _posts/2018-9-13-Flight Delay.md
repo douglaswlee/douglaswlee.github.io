@@ -67,7 +67,7 @@ The data so far hasn't captured travel volume to/from either the individual orig
 Additionally, while the different time of year and time of day act as proxies for volume to/from each airport to an extent, nothing described as of yet properly characterizes why volume matters so much -- that airports can only accomodate a certain amount of departures and arrivals per unit time. Below is a capacity profile for LGA under normal conditions ([source](https://www.faa.gov/airports/planning_capacity/profiles/media/LGA-Airport-Capacity-Profile-2014.pdf)). The solid line indicates the nominal hourly operating capacity at LGA, while the different points describe the frequency at which LGA was operating at some combination of hourly arrivals and hourly departures. We can see that in normal operating conditions, LGA is frequently very near its hourly capacity in terms of actual arrivals and departures.
 
 <p align="center">
-  <img src="../assets/img/FlightDelay/LGACap.png">
+  <img width="660" height="609" src="../assets/img/FlightDelay/LGACap.png">
 </p>
 
 I came up with a quick and dirty method for creating a feature that might be able to capture this very issue:
