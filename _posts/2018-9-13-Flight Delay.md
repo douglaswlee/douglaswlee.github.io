@@ -1,6 +1,7 @@
 ---
 layout: post
 title: I am a patient boy...I wait, I wait, I wait
+img: FlightDelay/delayboard.jpg
 ---
 
 In the not-so-distant past I spent a fair amount of time thinking about (though not from a data science perspective) congestion in the National Airspace System (NAS), which meant congestion at airports which at least has something to do with flight delays. Back when I was deep in this stuff, the primary causes of flight delays were said to be "Weather" and "Volume" (too much demand, or too many scheduled departures and arrivals).
