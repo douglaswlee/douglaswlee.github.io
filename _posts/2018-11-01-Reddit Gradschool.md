@@ -83,7 +83,7 @@ In order to really explore the documents and the topic distribution visually, we
 I adapted some code from a [tutorial](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html) for creating a t-SNE visualization of a topic model in [Bokeh](https://bokeh.pydata.org/en/latest/) to create the below visual representation of my documents and topics.
 
 <p align="center">
-  <img width="653" height="455" src="../assets/img/tSNE_GradSchool.png">
+  <img width="980" height="682" src="../assets/img/tSNE_GradSchool.png">
 </p>
 
 We can see that documents with similar maximally-weighted topic matter tended to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) clustered together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I wasn't quite sure what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
