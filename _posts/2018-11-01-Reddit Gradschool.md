@@ -19,7 +19,7 @@ Here, "useful feedback" can be any collection of comments responding to a submit
 A document for my corpus is a given user-submitted question to r/gradadmissions and any supporting text entered by the OP. Let's take a look at an example document below:
 
 <p align="center">
-  <img src="../assets/img/document_example.png">
+  <img src="../assets/img/gradadmissions/document_example.png">
 </p>
 
 Here, we have a question from a reddit user named SFSUer (the OP), who is kind of an overachiever and wants to know about receiving funding for a Master's degree in Engineering. From the above, you can see that I'm treating as a document the combination of the question in the title of the submission and the body of text in the box below. In the comments in response to this question, our OP has returned to follow up but hasn't exactly thanked any other commenter at this point, so I would label this document as one where "useful feedback" has not been received.
@@ -35,7 +35,7 @@ With my complete corpus now set, I first transformed the collected documents (th
 Using scikit-learn's `TfidfVectorizer`, one can transform a set of text documents into a *document-term matrix*, where each row is a vector of weighted tokens (words) corresponding to an individual document (question). `TfidfVectorizer` may be tuned according to the following parameters to modify the document-term matrix output:
 
 * `token_pattern`: denoting what text constitues a word (a string of at least two consecutive alphanumeric characters)
-* `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns) 
+* `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns)
 * `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
 * `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
 
@@ -69,7 +69,7 @@ From above there is at least one topic (Topic #4) with a whole lot of nothing an
 Ultimately, I was able to obtain a relatively resolved set of topics by considering only unigrams (single words) and without having to aggressively tune `stop_words` and `min_df` and `max_df` too much. Below are the 15 topics I ultimately settled upon, along with the top words associated with each topic which helped with naming each topic:
 
 <p align="center">
-  <img height="401" width="613" src="../assets/img/Topics.png">
+  <img height="401" width="613" src="../assets/img/gradadmissions/Topics.png">
 </p>
 
 You can observe that there are some redundant topics -- attempts to reduce the number of topics (to say, 10-12 topics) tended to result in these same redundancies appearing while losing other topics entirely. For the most part, nothing particularly distinguished these cases from each other, except for the two Admissions topics. The topic "Admissions1" might emphasize pending admissions decisions more, while "Admissions2" seemed to focus more on decisions already processed.
@@ -83,16 +83,16 @@ In order to really explore the documents and the topic distribution visually, we
 I adapted some code from a [tutorial](https://shuaiw.github.io/2016/12/22/topic-modeling-and-tsne-visualzation.html) for creating a t-SNE visualization of a topic model in [Bokeh](https://bokeh.pydata.org/en/latest/) to create the below visual representation of my documents and topics.
 
 <p align="center">
-  <img width="980" height="682" src="../assets/img/tSNE_GradSchool.png">
+  <img width="980" height="682" src="../assets/img/gradadmissions/tSNE_GradSchool.png">
 </p>
 
 We can see that documents with similar maximally-weighted topic matter tended to be to close to one another as a result of the t-SNE output. Topics pertaining to the admissions process before applications are sent out (GRE, Grades, Letter of Recommendation) clustered together, with the same being true for topics focused on the post-application submission process (Interview, Offer, the two Admissions topics). I wasn't quite sure what to make of the centrality of the Research topic, but on the other hand it is a rather critical element to the decision to attend grad school.
 
 ## OK, but what about "Useful Feedback": From Unsupervised Learning to a Logistic Regression model
 
-Now, recall that one of the objectives here was to see if the topic matter of submitted questions to r/gradadmissons impacted the incidence of "useful feedback" from the subreddit's users. I intended to use a Logistic Regression model because this problem has a binary target and I was interested in interpretability (what topics and other document characteristics are predictive of "useful feedback") as much as I was in predicting specific types of feedback. 
+Now, recall that one of the objectives here was to see if the topic matter of submitted questions to r/gradadmissons impacted the incidence of "useful feedback" from the subreddit's users. I intended to use a Logistic Regression model because this problem has a binary target and I was interested in interpretability (what topics and other document characteristics are predictive of "useful feedback") as much as I was in predicting specific types of feedback.
 
-For each document (a submitted question), I checked to see if the OP had first contributed to the comments, and then had made some expression of gratitude -- what amounts to the somewhat naive search for the word "thanks" (or some of its variations: e.g., "thank you", "tysm", etc.) in the OP's follow-up comments. If both of these conditions were satisfied, then the question had elicited "useful feedback" (positive class), otherwise the question did not (negative class). Defining the classes as such resulted in ~35% of documents labeled as eliciting "useful feedback" so I needed to set the parameter `class_weight = balanced` to address class imbalance for all models. 
+For each document (a submitted question), I checked to see if the OP had first contributed to the comments, and then had made some expression of gratitude -- what amounts to the somewhat naive search for the word "thanks" (or some of its variations: e.g., "thank you", "tysm", etc.) in the OP's follow-up comments. If both of these conditions were satisfied, then the question had elicited "useful feedback" (positive class), otherwise the question did not (negative class). Defining the classes as such resulted in ~35% of documents labeled as eliciting "useful feedback" so I needed to set the parameter `class_weight = balanced` to address class imbalance for all models.
 
 Having thus defined the target of the Logistic Regression models, I then specified the following features:
 
@@ -110,7 +110,7 @@ I evaluated four candidate Logistic Regression models, using all scikit-learn de
 After using `StandardScaler` to standardize all features for all models (as by default, scikit-learn Logistic Regression has built-in regularization), I set aside the most recent 15% of the data as a holdout set while training over the remaining. I split this data further into a series of training and validation sets, starting from the earliest 65% of this set through the earliest 85% in single-percentage point increments -- so 21 splits in all. Each model was evaluated over these splits using a modification of the [F1 score](https://en.wikipedia.org/wiki/F1_score), replacing Precision with *Specificity* (or the True Negative Rate) as a metric to be balanced against Recall. I used this metric because I wanted to prioritize the correct identification of questions which actually elicited "useful feedback" as well as those not actually eliciting such feedback in order to provide a more complete picture of the potential feedback a prospective r/gradamissions user might encounter. Also, like [Precision and Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html), the metrics Recall and Specificity have [competing objectives](http://med.emory.edu/EMAC/curriculum/diagnosis/sensand.htm).
 
 <p align="center">
-  <img src="../assets/img/LRComp.png">
+  <img src="../assets/img/gradadmissions/LRComp.png">
 </p>
 
 From the above, I chose the all features Logistic Regression model **All**, as it resulted the highest average value for my modification of the F1 score. Certainly the variance of this model's performance across all validation sets is larger than would be preferred, but lower variance models (the topics-only model **Top** and the topics and OP model **TopOP** are not as good on average, and **All** outperforms both across the majority of validation sets).
@@ -118,29 +118,29 @@ From the above, I chose the all features Logistic Regression model **All**, as i
 I attempted to improve the performance of the **All** model by tuning the decision threshold for classifying observations into the positive class on the full training set. Changing the threshold from the default (probability of being in the positive class) of 0.5 doesn't turn out to improve performance much:
 
 <p align="center">
-  <img src="../assets/img/ModF1.png">
+  <img src="../assets/img/gradadmissions/ModF1.png">
 </p>
 
 An increase of this threshold to 0.51 slightly improved model performance, ultimately prioritizing the correct identification of questions not eliciting "useful feedback" (Specificity) just a bit over doing the same for questions eliciting "useful feedback" (Recall):
 
 <p align="center">
-  <img src="../assets/img/RecSpec.png">
+  <img src="../assets/img/gradadmissions/RecSpec.png">
 </p>
 
 Evaluating the final version of this model on the holdout set showed the same tradeoff, with better performance in correctly classifying questions that did not elicit "useful feedback" (true negatives):
 
 <p align="center">
-  <img src="../assets/img/ConfusionFletcher.png">
+  <img src="../assets/img/gradadmissions/ConfusionFletcher.png">
 </p>
 
 Taking a look below at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
 
 * Focused questions about topics such as the GRE or Interview will increase the (log) odds of receiving the right type of feedback, but more general questions about the types of Programs or Schools to apply also work,
-* Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and 
+* Some focused questions, such as topics specifically about CS/Math programs, do not work and appear to lead to less "useful feedback," and
 * As for presentation of question, longer and more detailed appears to be better, as does posting before the April 15th deadline.
 
 <p align="center">
-  <img src="../assets/img/LRCoef.png">
+  <img src="../assets/img/gradadmissions/LRCoef.png">
 </p>
 
 ## Takeaways and other Navel-Gazing
