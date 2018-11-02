@@ -18,7 +18,9 @@ Here, "useful feedback" can be any collection of comments responding to a submit
 
 A document for my corpus is a given user-submitted question to r/gradadmissions and any supporting text entered by the OP. Let's take a look at an example document below:
 
-![alt text](../assets/img/document_example.png)
+<p align="center">
+  <img src="../assets/img/document_example.png">
+</p>
 
 Here, we have a question from a reddit user named SFSUer (the OP), who is kind of an overachiever and wants to know about receiving funding for a Master's degree in Engineering. From the above, you can see that I'm treating as a document the combination of the question in the title of the submission and the body of text in the box below. In the comments in response to this question, our OP has returned to follow up but hasn't exactly thanked any other commenter at this point, so I would label this document as one where "useful feedback" has not been received.
 
@@ -66,7 +68,9 @@ From above there is at least one topic (Topic #4) with a whole lot of nothing an
 
 Ultimately, I was able to obtain a relatively resolved set of topics by considering only unigrams (single words) and without having to aggressively tune `stop_words` and `min_df` and `max_df` too much. Below are the 15 topics I ultimately settled upon, along with the top words associated with each topic which helped with naming each topic:
 
-![alt text](../assets/img/Topics.png)
+<p align="center">
+  <img height="401" width="613" src="../assets/img/Topics.png">
+</p>
 
 You can observe that there are some redundant topics -- attempts to reduce the number of topics (to say, 10-12 topics) tended to result in these same redundancies appearing while losing other topics entirely. For the most part, nothing particularly distinguished these cases from each other, except for the two Admissions topics. The topic "Admissions1" might emphasize pending admissions decisions more, while "Admissions2" seemed to focus more on decisions already processed.
 
