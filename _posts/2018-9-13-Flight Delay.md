@@ -6,7 +6,7 @@ title: I am a patient boy...I wait, I wait, I wait
 In the not-so-distant past I spent a fair amount of time thinking about (though not from a data science perspective) congestion in the National Airspace System (NAS), which meant congestion at airports which at least has something to do with flight delays. Back when I was deep in this stuff, the primary causes of flight delays were said to be "Weather" and "Volume" (too much demand, or too many scheduled departures and arrivals).
 
 <p align="center">
-  <img src="../assets/img/FlightDelay/delay.png">
+  <img src="../assets/img/FlightDelay/delay.jpg">
 </p>
 
 The New York City "metroplex" -- primarily John F. Kennedy International Airport (JFK), LaGuardia Airport (LGA), and Newark Liberty International Airport (EWR) -- is a particular [mess](https://www.businessinsider.com/heres-why-new-york-city-air-traffic-is-so-congested-2015-7) for air travelers with delays resulting from weather as well as physical and regulatory capacity limitations (amongst other factors).
@@ -47,7 +47,7 @@ Flights that were either cancelled or diverted were removed, as they are reporte
 Bringing in the weather data was not entirely straightforward. For one thing, after reading this data in, we can see that its format requires some reshaping:
 
 <p align="center">
-  <img src="../assets/img/FlightDelay/WXexample.png">
+  <img width="430", height="240" src="../assets/img/FlightDelay/WXexample.png">
 </p>
 
 The first three rows above are each individual weather observations from the same location and same date, and ideally this data would be structured so each row was all weather observations collected from a single location on a single date. You might also notice the "TMAX" (or maximum temperature) is a bit high for one particular weather station at this date, the units recorded here for each daily weather observation is on a bit of an odd scale (temperature, for example, is in tenths of a &#8451;).
@@ -67,7 +67,7 @@ The data so far hasn't captured travel volume to/from either the individual orig
 Additionally, while the different time of year and time of day act as proxies for volume to/from each airport to an extent, nothing described as of yet properly characterizes why volume matters so much -- that airports can only accomodate a certain amount of departures and arrivals per unit time. Below is a capacity profile for LGA under normal conditions ([source](https://www.faa.gov/airports/planning_capacity/profiles/media/LGA-Airport-Capacity-Profile-2014.pdf)). The solid line indicates the nominal hourly operating capacity at LGA, while the different points describe the frequency at which LGA was operating at some combination of hourly arrivals and hourly departures. We can see that in normal operating conditions, LGA is frequently very near its hourly capacity in terms of actual arrivals and departures.
 
 <p align="center">
-  <img src="../assets/img/FlightDelay/LGACap.png">
+  <img width="660" height="609" src="../assets/img/FlightDelay/LGACap.png">
 </p>
 
 I came up with a quick and dirty method for creating a feature that might be able to capture this very issue:
