@@ -47,7 +47,7 @@ Flights that were either cancelled or diverted were removed, as they are reporte
 Bringing in the weather data was not entirely straightforward. For one thing, after reading this data in, we can see that its format requires some reshaping:
 
 <p align="center">
-  <img src="../assets/img/FlightDelay/WXexample.png">
+  <img width="430", height="240" src="../assets/img/FlightDelay/WXexample.png">
 </p>
 
 The first three rows above are each individual weather observations from the same location and same date, and ideally this data would be structured so each row was all weather observations collected from a single location on a single date. You might also notice the "TMAX" (or maximum temperature) is a bit high for one particular weather station at this date, the units recorded here for each daily weather observation is on a bit of an odd scale (temperature, for example, is in tenths of a &#8451;).
