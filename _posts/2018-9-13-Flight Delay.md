@@ -81,7 +81,7 @@ Then for each year-airport-hour, the resulting value is an estimate of the perce
 
 ## Model Features and Response
 
-I ended up selecting the following features for modeling:
+I ended up with the following features for modeling:
 
 #### Flight Schedule Features
 * Air Time (as a proxy for travel time)
