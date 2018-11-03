@@ -37,7 +37,7 @@ Using scikit-learn's `TfidfVectorizer`, one can transform a set of text document
 
 * `token_pattern`: denoting what text constitues a word (a string of at least two consecutive alphanumeric characters)
 * `stop_words`: specifying a list of words to ignore -- usually commonly occurring words that provide little to no information about a document (such as most pronouns)
-* `ngram_range`: defining the minimum and maximum length of a sequence of words to evaluate (for this case only single words, and not multi-word phrases)
+* `ngram_range`: defining the minimum and maximum length of a consecutive sequence of words to evaluate (for this case only single words, and not multi-word phrases)
 * `min_df`, `max_df`: specifying the minimum and maximum document frequencies for a given word to be included in the matrix -- especially rare or common words are thus ignored as uninformative.
 
 I tuned the last three sets of the above parameters in tandem with using [Non-Negative Matrix Factorization](http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html) (NMF) to extract a specified number of topics from the documents. NMF allows us to derive these topics from the document-term matrix, decomposing it into a pair of non-negative matrices, the document-topic and topic-term matrix. The former of these assigns a vector of weights to each document basically reflecting the intensity of the topic in the document, while the latter assigns a vector of weights to each topic basically reflecting the intensity of the association of a given word to the topic. Consequently, for some chosen number of topics, one may obtain the top words for each topic -- for example:
