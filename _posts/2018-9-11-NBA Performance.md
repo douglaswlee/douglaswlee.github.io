@@ -80,7 +80,7 @@ There were 391 team seasons with 14 all game situation features and 9 clutch sit
 Before doing any model building, let's first take a look at the distribution of *diffWP*, which appears to be bimodal and a little bit skewed to the left, but not truly worrisome for any concerns about adequacy for a linear regression model (though a normally distributed response variable is not a model assumption).
 
 <p align="center">
-  <img src="../assets/img/NBA/diffWPhist.png">
+  <img src="../assets/img/NBA/diffWPHist1.png">
 </p>
 
 The two highest overperforming teams (to the far right in the histogram) are:
