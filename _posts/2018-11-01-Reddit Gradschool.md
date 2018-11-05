@@ -131,7 +131,7 @@ An increase of this threshold to 0.51 slightly improved model performance, ultim
 Evaluating the final version of this model on the holdout set showed the same tradeoff, with better performance in correctly classifying questions that did not elicit "useful feedback" (true negatives):
 
 <p align="center">
-  <img src="../assets/img/gradadmissions/ConfusionFletcher.png">
+  <img src="../assets/img/gradadmissions/ConfusionAll.png">
 </p>
 
 Taking a look below at the coefficient values of all features revealed some insight into what characteristics of submitted questions tend to and not to lead to "useful feedback," in terms of topic matter and how questions are presented:
