@@ -10,8 +10,8 @@ These were some of the thoughts I had as I was planning out my fourth project at
 
 I decided to attempt a similar project using a different, advice-driven subreddit that happens to be close to my heart (or the darkness of it, amirite) -- [r/gradamissions](https://www.reddit.com/r/gradadmissions/), a subreddit for graduate school candidates to obtain information and share experiences about the application process. My main objectives for this project were:
 
-* To understand which topics best describe user-submitted questions to this subreddit using Topic Modeling, and
-* To explain how these topics (and characteristics of the submitted questions) contribute to incidence of “useful feedback” using a Logistic Regression model.
+* To understand the major points of discussion which best describe user-submitted questions to this subreddit using a [Topic modle](https://en.wikipedia.org/wiki/Topic_model), and
+* To explain how these topics (and characteristics of the submitted questions) contribute to incidence of “useful feedback” using a [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression) model.
 
 Here, "useful feedback" can be any collection of comments responding to a submitted question where other users sufficiently address the concerns of the original poster (OP). This may be indicated by the OP simply thanking or otherwise expressing gratitude to other users for their responses. Ultimately, the goal of this effort would be to help r/gradadmissions users in structuring their questions to receive the best possible feedback and encourage future visits and contributions to discussions.
 
