@@ -105,7 +105,7 @@ The response variable, if you've been following, is a binary variable indicating
 
 ## Model Selection
 
-Since my initial emphasis was on interpretation -- why the flights are delayed -- I looked only at Logistic Regression and Random Forests, which I further broke down according to which features I included. The candidate models I evaluated were:
+Since my initial emphasis was on interpretation -- why the flights are delayed -- I looked only at [Logistic Regression](http://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) and [Random Forests](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#), which I further broke down according to which features I included. The candidate models I evaluated were:
 
 * **LRFlight**, Logistic Regression with Flight Schedule features only
 * **LRWX**, Logistic Regression with Weather features only
