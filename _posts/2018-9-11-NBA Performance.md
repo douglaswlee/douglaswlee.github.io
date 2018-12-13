@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NBA Teams, Pythagoras (sort of), and who overperforms/underperforms
+title: NBA<sup>2</sup> + B<sup>2</sup> + C<sup>2</sup>
 img: NBA/lebron.jpg
 ---
 
