@@ -33,3 +33,16 @@ Since I've used the current season's Toronto Raptors as an example throughout, l
 
 We see there are quite a few very thick black edges indicating extremely net positive contributions to the Raptors' performance whenever some of their more frequently used players -- for example, Kawhi Leonard ('K. Leonard'), Kyle Lowry ('K. Lowry'), and Pascal Siakam ('P. Siakam') -- play together. However, for a team that has the best record in the NBA (as of this writing) and which is not significantly overperforming (22-7 actual record vs. 21-8 Pythagorean record), there are more prominent red edges than we'd expect. Additionally, many of these edges connect players who, while not the most frequently-used players on Toronto, are certainly no bit players -- such as OG Anunoby ('O. Anunoby') and C.J. Miles ('C. Miles'). Just [last season](https://www.theringer.com/nba-playoffs/2018/4/14/17238988/raptors-wizards-game-1), Toronto won the most games in the Eastern Conference off the strength of its depth and bench players, but so far this season they have had the same amount of success while their [reserves have been less effective](https://www.thestar.com/sports/raptors/2018/12/11/raptors-bench-mob-20-remains-a-work-in-progress.html) and leaning much more heavily on their very best five players.
 
+Now, returning to the ideas of overperformance and underperformance that I started off with, I'd previously mentioned that last season's greatest overperformers happened to be the [Cleveland Cavaliers](https://www.basketball-reference.com/teams/CLE/2018.html), a team which made its fourth NBA Finals appearance in as many seasons and which also happened to be led by some guy named LeBron James. The Cavaliers won a somewhat impressive 50 games last season, indicating they may have been pretty good, but their expected (Pythagorean) win total of 43 suggested they were actually pretty mediocre. Looking at the *Net Points Contributed* across all pairs of their players, the Cavaliers seem to be even less than that:
+
+<p align="center">
+  <img src="../assets/img/1718Cavs.png">
+</p>
+
+I mean, look at all that red -- and look at all that red associated with one 'L. James'! Clearly this was not a particularly good team overall, and while I thought about titling this post "Actually, LeBron sucks," that the above actually represents a good team by *results* is probably a testament to James (or you could just look at how Cleveland is doing [this season](https://www.basketball-reference.com/teams/CLE/2019.html) with LeBron now on the Lakers). Just for comparison, here are the *Net Points Contributed* by all pairs of players on the 2016-17 Cleveland Cavaliers, a 52-win team expected to win 49 games:
+
+<p align="center">
+  <img src="../assets/img/1617Cavs.png">
+</p>
+
+I mean, that looks a lot more like what'd you expect from a good team -- it might actually be more representative of a high-performing team than what we saw above for this season's Raptors.
